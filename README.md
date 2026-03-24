@@ -23,12 +23,14 @@ public:
     }
 
     bool IsEmpty();
+    int search(int element);
     void Push_Front(int element);
     void Push_Bach(int element);
     void Push_At(int pos, int element);
     void Pop_Front();
     void Pop_Back();
     void pop_Element(int element);
+    void Revese();
     void Print();
 
 };
@@ -39,6 +41,22 @@ public:
 bool Linked_List::IsEmpty()
 {
     return first == NULL;
+}
+
+int Linked_List::search(int element)
+{
+    Node* cur = first;
+    int pos = 0;
+    while (cur != NULL)
+    {
+        if (cur->item == element)
+            return pos;
+        pos++;
+        cur = cur->Next;
+    }
+
+    cout << "NOT FOUND......!" << endl;
+    return -1;
 }
 
 void Linked_List::Push_Front(int element)
@@ -203,6 +221,27 @@ void Linked_List::pop_Element(int element)
     }
 }
 
+void Linked_List::Revese()
+{
+    if (IsEmpty()) return;
+
+    Node* prev = NULL;
+    Node* cur = first;
+    Node* next = NULL;
+
+    last = first;
+
+    while (cur != NULL)
+    {
+        next = cur->Next; 
+        cur->Next = prev; 
+        prev = cur;       
+        cur = next;       
+    }
+
+    first = prev;
+}
+
 void Linked_List::Print()
 {
     Node* cur = first;
@@ -211,7 +250,10 @@ void Linked_List::Print()
         cout << cur->item << " ";
         cur = cur->Next;
     }
+    cout << endl;
 }
+
+
 
 
 
@@ -221,18 +263,7 @@ void Linked_List::Print()
 int main()
 {
     Linked_List lk;
-    lk.Push_Front(50);
-    lk.Push_Front(40);
-    lk.Push_Front(30);
-    lk.Push_Bach(60);
-    lk.Push_At(0, 20);
-    lk.Push_At(5, 70);
-    lk.Push_At(2, 35);
-    lk.Push_At(10, 100);
-    lk.Pop_Front();
-    lk.Pop_Back();
-    lk.pop_Element(40);
-    lk.Print();
+    return 0;
 }
 
 
